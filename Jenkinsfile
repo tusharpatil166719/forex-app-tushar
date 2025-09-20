@@ -39,7 +39,7 @@ node {
     }
 
     stage('Run Forex App') {
-        sh "java -cp target/forex-app-1.0-SNAPSHOT.jar com.example.forex.ForexConverter rates.csv ${params.AMOUNT} ${params.CURRENCY}"
+        sh "java -cp target/forex-app-1.0.0.jar com.example.forex.ForexConverter rates.csv ${params.AMOUNT} ${params.CURRENCY}"
     }
 
     stage('Docker Build & Run') {
