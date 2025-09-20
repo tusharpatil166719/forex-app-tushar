@@ -49,7 +49,6 @@ node {
                     scp -i ${KEY} -o StrictHostKeyChecking=no  rates.csv Dockerfile target/forex-app-1.0.0.jar rates.csv ec2-user@${AGENT_HOST}:/tmp/workspace/pipeline/
                 '''
             }
-            '''
         }
     }
 
