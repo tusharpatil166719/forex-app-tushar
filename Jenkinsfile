@@ -45,8 +45,8 @@ node {
     stage('Docker Build & Run') {
         node('agent01') {
             sh '''
-              docker build -t forex-app .
-              docker run --rm forex-app ${AMOUNT} ${CURRENCY}
+              sudo docker build -t forex-app .
+              sudo docker run --rm forex-app ${AMOUNT} ${CURRENCY}
             '''
         }
     }
