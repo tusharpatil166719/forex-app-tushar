@@ -42,6 +42,14 @@ node {
         sh "java -cp target/forex-app-1.0.0.jar com.example.forex.ForexConverter rates.csv ${params.AMOUNT} ${params.CURRENCY}"
     }
 
+    stage('Copy files to Docker Host') {
+        withCredentials([sshUserPrivateKey(credentialsId: 'ec2-user', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
+            sh '''
+                scp -i ${KEY} -o StrictHostKeyChecking=no target/forex-app-1.0.0.jar rates.csv ec2-user@agent01:/tmp/workspace/pipeline/
+            '''
+        }
+    }
+
     stage('Docker Build & Run') {
         node('agent01') {
             sh '''
