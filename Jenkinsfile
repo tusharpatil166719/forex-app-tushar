@@ -55,6 +55,7 @@ node {
     stage('Docker Build & Run') {
         node('agent01') {
             sh '''
+              cd /tmp/workspace/pipeline/
               sudo docker build -t forex-app .
               sudo docker run --rm forex-app ${AMOUNT} ${CURRENCY}
             '''
