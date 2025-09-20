@@ -1,5 +1,8 @@
 node {
     // Parameters for user input
+    tools {
+        maven 'Default' 
+    }
     properties([
         parameters([
             string(name: 'AMOUNT', defaultValue: '1000', description: 'Amount in INR'),
