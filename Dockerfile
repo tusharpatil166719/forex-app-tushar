@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim
+FROM openjdk:21-jre-slim
 WORKDIR /app
 COPY forex-app-1.0.0.jar app.jar
 COPY rates.csv rates.csv
