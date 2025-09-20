@@ -44,8 +44,11 @@ node {
 
     stage('Copy files to Docker Host') {
         withCredentials([sshUserPrivateKey(credentialsId: 'ec2-user', keyFileVariable: 'KEY', usernameVariable: 'USERNAME')]) {
-            sh '''
-                scp -i ${KEY} -o StrictHostKeyChecking=no target/forex-app-1.0.0.jar rates.csv ec2-user@agent01:/tmp/workspace/pipeline/
+            withCredentials([string(credentialsId: 'aws_server', variable: 'AGENT_HOST')]) {
+                sh '''
+                    scp -i ${KEY} -o StrictHostKeyChecking=no  rates.csv Dockerfile target/forex-app-1.0.0.jar rates.csv ec2-user@${AGENT_HOST}:/tmp/workspace/pipeline/
+                '''
+            }
             '''
         }
     }
