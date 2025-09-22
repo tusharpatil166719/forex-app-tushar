@@ -48,7 +48,7 @@ node {
     }
 
     stage('Docker Build & Run') {
-        node('tusharuser07') {
+        node('aws-tushar-agent01') {
             sh '''
               cd /tmp/workspace/pipeline/
               sudo docker build -t forex-app .
